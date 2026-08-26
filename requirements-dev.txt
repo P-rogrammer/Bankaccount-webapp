@@ -1,0 +1,9 @@
+-r requirements.txt
+pytest>=8,<9
+
+# Optional - only needed to run the full-system tests in tests/:
+# tests/test_full_system_restart.py needs "requests"
+# tests/test_browser_playwright.py needs "playwright" (plus a one-time
+# `playwright install chromium` to download the browser binary)
+requests>=2.30
+playwright>=1.40

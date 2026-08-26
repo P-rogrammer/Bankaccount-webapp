@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BankAccount — Educational Demo</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>BankAccount <span class="tag">educational demo</span></h1>
+    <p class="subtitle">A small Single Page Application talking to a Flask API. Not a real bank.</p>
+  </header>
+
+  <main class="layout">
+
+    <!-- ============================== -->
+    <!-- Accounts list                  -->
+    <!-- ============================== -->
+    <section class="card card-wide" id="accounts-section" aria-labelledby="accounts-heading">
+      <div class="card-header">
+        <h2 id="accounts-heading">Accounts</h2>
+        <button type="button" id="refresh-accounts-btn" class="btn btn-secondary">Refresh accounts</button>
+      </div>
+
+      <div id="accounts-message" class="message" aria-live="polite"></div>
+
+      <div class="table-scroll">
+        <table class="accounts-table">
+          <caption class="sr-only">List of accounts with account number, holder name, and balance</caption>
+          <thead>
+            <tr>
+              <th scope="col">Account #</th>
+              <th scope="col">Name</th>
+              <th scope="col">Balance</th>
+            </tr>
+          </thead>
+          <tbody id="accounts-table-body">
+            <!-- rows are rendered by app.js -->
+          </tbody>
+        </table>
+      </div>
+      <p id="accounts-empty" class="empty-hint" hidden>No accounts yet. Create your first account below.</p>
+    </section>
+
+    <!-- ============================== -->
+    <!-- Create account                 -->
+    <!-- ============================== -->
+    <section class="card" id="create-account-section" aria-labelledby="create-account-heading">
+      <h2 id="create-account-heading">Create Account</h2>
+      <form id="create-account-form" novalidate>
+        <div class="field">
+          <label for="create-name">Account holder name</label>
+          <input type="text" id="create-name" name="name" required placeholder="e.g. Alice" autocomplete="off" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create account</button>
+      </form>
+      <div id="create-account-message" class="message" aria-live="polite"></div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- Deposit                        -->
+    <!-- ============================== -->
+    <section class="card" id="deposit-section" aria-labelledby="deposit-heading">
+      <h2 id="deposit-heading">Deposit</h2>
+      <form id="deposit-form" novalidate>
+        <div class="field">
+          <label for="deposit-account-number">Account number</label>
+          <input type="number" id="deposit-account-number" name="account_number" required min="1" step="1" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="deposit-amount">Amount</label>
+          <input type="number" id="deposit-amount" name="amount" required min="0.01" step="0.01" inputmode="decimal" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Deposit</button>
+      </form>
+      <div id="deposit-message" class="message" aria-live="polite"></div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- Withdraw                       -->
+    <!-- ============================== -->
+    <section class="card" id="withdraw-section" aria-labelledby="withdraw-heading">
+      <h2 id="withdraw-heading">Withdraw</h2>
+      <form id="withdraw-form" novalidate>
+        <div class="field">
+          <label for="withdraw-account-number">Account number</label>
+          <input type="number" id="withdraw-account-number" name="account_number" required min="1" step="1" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="withdraw-amount">Amount</label>
+          <input type="number" id="withdraw-amount" name="amount" required min="0.01" step="0.01" inputmode="decimal" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Withdraw</button>
+      </form>
+      <div id="withdraw-message" class="message" aria-live="polite"></div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- Transfer                       -->
+    <!-- ============================== -->
+    <section class="card" id="transfer-section" aria-labelledby="transfer-heading">
+      <h2 id="transfer-heading">Transfer</h2>
+      <form id="transfer-form" novalidate>
+        <div class="field">
+          <label for="transfer-source">Source account number</label>
+          <input type="number" id="transfer-source" name="source_account_number" required min="1" step="1" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="transfer-destination">Destination account number</label>
+          <input type="number" id="transfer-destination" name="destination_account_number" required min="1" step="1" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="transfer-amount">Amount</label>
+          <input type="number" id="transfer-amount" name="amount" required min="0.01" step="0.01" inputmode="decimal" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Transfer</button>
+      </form>
+      <div id="transfer-message" class="message" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>Frontend: HTML/CSS/vanilla JS &middot; Backend: Flask &middot; Storage: JSON</p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

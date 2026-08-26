@@ -1,0 +1,296 @@
+:root {
+  --color-bg: #f5f7f9;
+  --color-surface: #ffffff;
+  --color-border: #dde3e8;
+  --color-text: #1f2933;
+  --color-muted: #5f6b76;
+  --color-primary: #2b6777;
+  --color-primary-dark: #204e59;
+  --color-success-bg: #e6f6ec;
+  --color-success-text: #1f7a44;
+  --color-error-bg: #fdecec;
+  --color-error-text: #b3261e;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+/* Utility: visually hidden but still available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-header {
+  padding: 24px 20px 12px;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+}
+
+.app-header .tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+  background: rgba(43, 103, 119, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.app-header .subtitle {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout: single column by default (narrow screens); a two-column    */
+/* grid kicks in once there's room, with the account list spanning    */
+/* both columns via .card-wide.                                       */
+/* ------------------------------------------------------------------ */
+
+.layout {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 12px 16px 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (min-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+}
+
+.card-header h2 {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Forms                                                               */
+/* ------------------------------------------------------------------ */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+input {
+  padding: 9px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Buttons                                                             */
+/* ------------------------------------------------------------------ */
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background-color 0.12s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  margin-top: 0;
+  padding: 7px 14px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(43, 103, 119, 0.08);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Accounts table                                                      */
+/* ------------------------------------------------------------------ */
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.accounts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.accounts-table th,
+.accounts-table td {
+  text-align: left;
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accounts-table td:first-child,
+.accounts-table td:last-child {
+  font-variant-numeric: tabular-nums;
+}
+
+.accounts-table th {
+  color: var(--color-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.accounts-table tbody tr:hover {
+  background: rgba(43, 103, 119, 0.04);
+}
+
+.empty-hint {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin: 10px 0 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Status / error messages                                             */
+/* ------------------------------------------------------------------ */
+
+.message {
+  margin-top: 10px;
+  font-size: 0.85rem;
+}
+
+.message:empty {
+  margin-top: 0;
+}
+
+.message.success {
+  color: var(--color-success-text);
+  background: var(--color-success-bg);
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.message.error {
+  color: var(--color-error-text);
+  background: var(--color-error-bg);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.message.info {
+  color: var(--color-muted);
+}
+
+.app-footer {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  padding: 12px 16px 30px;
+}
+
+@media (max-width: 480px) {
+  .layout {
+    padding: 8px 10px 30px;
+  }
+
+  .card {
+    padding: 14px 16px;
+  }
+}
