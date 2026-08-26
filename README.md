@@ -1,3 +1,8 @@
+> **Status:** Alpha
+>
+> This is an educational prototype and is not intended for real banking or
+> financial use. 
+
 # BankAccount Web App
 
 ## Project Overview
