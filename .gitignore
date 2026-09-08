@@ -15,6 +15,7 @@ env/
 
 # Logs
 *.log
+accounts.json
 
 # Editor/OS
 .vscode/
