@@ -4,6 +4,14 @@
 
 # BankAccount Web App
 
+## 🌐 Live Demo
+
+Try the deployed version of the application:
+
+**[Open Live Demo](https://bankaccount-webapp.onrender.com)**
+
+> **Note:** This is an educational prototype. Data is stored using a simple JSON file and may not persist permanently on the deployed service.
+
 ## Project Overview
 
 This is a small **educational** banking web application. It exists to demonstrate, in a way a beginner can follow end to end, how a real web application's pieces fit together: a browser-based frontend, a REST-style API, a business-logic layer, and file-based persistence.
@@ -14,19 +22,27 @@ This is a small **educational** banking web application. It exists to demonstrat
 
 ```text
 Frontend (HTML/CSS/JavaScript)
+
         |
         |  HTTP requests (fetch), JSON bodies
         v
+
 Flask API (backend/app.py)
+
         |
         |  plain Python method calls
         v
+
 AccountManager (app/account_manager.py)
+
         |
         v
+
 BankAccount (core/bank_account.py)
+
         |
         v
+
 JSON Storage (storage/account_storage.py -> accounts.json)
 ```
 
@@ -161,8 +177,11 @@ Each layer has its own `pytest` suite next to its code:
 
 ```bash
 cd core && python -m pytest test_bank_account.py -v
+
 cd storage && python -m pytest test_account_storage.py -v
+
 cd app && python -m pytest test_account_manager.py -v
+
 cd backend && python -m pytest test_backend.py -v
 ```
 
@@ -180,7 +199,7 @@ What each covers:
 
 * `test_full_system_restart.py` — starts the real app as a subprocess, drives it over real HTTP, restarts it, and confirms data and account numbering survive an actual process restart. Needs `requests`.
 
-* `test_browser_playwright.py` — drives the real UI in a headless browser (create accounts, deposit, withdraw, transfer, trigger errors, and refresh the page) using [Playwright](https://playwright.dev/python/). Needs `pip install playwright && playwright install chromium`.
+* `test_browser_playwright.py` — drives the real UI in a headless browser (create accounts, deposit, withdraw, transfer, trigger errors, and refresh the page) using Playwright. Needs `pip install playwright && playwright install chromium`.
 
 Run either directly, for example:
 
@@ -205,20 +224,30 @@ The backend exposes a small REST-style JSON API:
 
 Every response is JSON, either `{"data": ...}` on success or `{"error": {"code": ..., "message": ...}}` on failure.
 
-For full request/response examples, field types, and every possible error code and status, see [API_CONTRACT.md](./API_CONTRACT.md).
+For full request/response examples, field types, and every possible error code and status, see `API_CONTRACT.md`.
 
 ## Project Structure
 
 ```text
 core/                  BankAccount business logic - no HTTP, no files, no terminal I/O
+
 storage/               JSON persistence - reads/writes accounts.json
+
 app/                   AccountManager - connects Core + Storage for the app to use
+
 backend/               Flask API + frontend serving
+
 frontend/              HTML/CSS/vanilla JS Single Page Application
+
 tests/                 Full-system tests that span more than one layer
+
 wsgi.py                WSGI entry point for production deployment
+
 accounts.json          File-based application data (created/updated at runtime)
+
 API_CONTRACT.md        Full API reference
+
 requirements.txt       Runtime dependencies (Flask + Gunicorn)
+
 requirements-dev.txt   Development and testing dependencies
 ```
